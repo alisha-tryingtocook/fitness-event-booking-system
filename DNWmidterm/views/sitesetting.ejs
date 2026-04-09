@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Settings</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+    <header>
+        <h1>Create New Event</h1>
+    </header>
+    <main>
+        <!-- form to update site setting -->
+        <form action="/sitesetting" method="POST">
+            <div>
+                <label for="siteName">Site Name:</label>
+                <!-- inoting site name -->
+                <input type="text" id="siteName" name="siteName" value=><%= settings.siteName %></required>
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <!-- inputing site description  -->
+                <textarea id="description" name="description" required><%= settings.description %></textarea>
+            </div>
+            <button type="submit" class="button1">Save Changes</button>
+        </form>
+        <a href="/organizer" class="button2">Back to Organizer Home Page</a>
+    </main>
+</body>
+</html>

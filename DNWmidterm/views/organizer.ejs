@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizer Home Page</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+    <header>
+        <h1>Organizer Home Page</h1>
+        <p>Manage your events and site settings</p>
+    </header>
+    <main>
+        <!-- displaying site setting  -->
+        <section>
+            <h2>Site Settings</h2>
+            <p><strong>Site Name:</strong> <%= settings.siteName %></p>
+            <p><strong>Description:</strong> <%= settings.description %></p>
+            <a href="/sitesetting" class="button2">Edit Site Settings</a>
+        </section>
+
+        <!-- creating new event  -->
+        <section>
+            <h2>Create New Event</h2>
+            <a href="/organizer/create-event" class="button2">Create New Event</a>
+        </section>
+
+        <!-- displaying draft and deleting -->
+        <section>
+            <h2>Draft Events</h2>
+            <% drafts.forEach(draft => { %>
+                <div class="event-card">
+                    <h3><%= draft.title %></h3>
+                    <p><%= draft.description %></p>
+                    <a href="/organizer/delete-draft/<%= draft.id %>" class="button1">Delete</a>
+                    <a href="/" class="button1">Edit</a>
+                </div>
+            <% }); %>
+        </section>
+        
+        <!-- displaying pubslished events -->
+        <section>
+            <h2>Published Events</h2>
+            <% if (published && published.length > 0) { %>
+                <% published.forEach(event => { %>
+                    <div class="event-card">
+                        <h3><%= event.title %></h3>
+                        <p><%= event.description %></p>
+                        <p><strong>Date:</strong> <%= event.date %></p>
+                        <p><strong>Tickets Sold:</strong> <%= event.soldTickets %></p>
+                        <a href="/attendeeviews/event/<%= event.id %>" class="button1">View Event</a>
+                        <a href="/users/delete-event/<%= event.id %>" class="button1">Delete</a>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No published events available.</p>
+            <% } %>
+        </section>
+
+        <a href="/" class="button1">Back to Home</a>
+    </main>
+</body>
+</html>

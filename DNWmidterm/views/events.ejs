@@ -1,0 +1,52 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- link to main css -->
+    <link rel="stylesheet" href="/main.css">
+    <title>Explore Events</title>
+</head>
+<body>
+    <header>
+        <h1>All Events</h1>
+    </header>
+    <main>
+        <section>
+            <!-- Loop through each event and display details -->
+            <% events.forEach(event => { %>
+                <div class="class-card">
+                    <!-- event name -->
+                    <h2><%= event.name %></h2>
+                    <p><%= event.description %></p>
+                    <!-- evevnt date and time  -->
+                    <p><strong>Date:</strong> <%= event.date %></p>
+                    <p><strong>Time:</strong> <%= event.time %></p>
+                    <p><strong>Capacity:</strong> <%= event.booked %> / <%= event.capacity %></p>
+                    <!-- event ticket type and price -->
+                    <p><strong>Full-Price Tickets:</strong> <%= event.fullPriceTickets %> available at $<%= event.fullPriceCost %> each</p>
+                    <p><strong>Concession Tickets:</strong> <%= event.concessionTickets %> available at $<%= event.concessionCost %> each</p>
+                
+                    <!-- ticket booking -->
+                    <% if (event.booked < event.capacity) { %>
+                        <form action="/users/book" method="POST">
+                            <input type="hidden" name="classId" value="<%= event.id %>">
+                            <label for="fullPriceTickets">Full-Price Tickets:</label>
+                            <input type="number" id="fullPriceTickets" name="fullPriceTickets" min="0" max="<%= event.fullPriceTickets %>">
+                            <label for="concessionTickets">Concession Tickets:</label>
+                            <input type="number" id="concessionTickets" name="concessionTickets" min="0" max="<%= event.concessionTickets %>">
+                            <button type="submit" class="button2">Book Now</button>
+                        </form>
+                    <% } else { %>
+                        <p class="full">Class is full</p>
+                    <% } %>
+                </div>
+            <% }); %>
+        </section>
+        <!-- Back to attendee page -->
+        <a href="/attendeeviews" class="button1">Attendee Page</a>
+    </main>
+</body>
+</html>

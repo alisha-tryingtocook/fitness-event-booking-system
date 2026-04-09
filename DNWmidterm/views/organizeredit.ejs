@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create or Edit Event</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+    <h1>Create or Edit Event</h1>
+    <!-- form to create and edit event -->
+    <form action="/users/editevent" method="POST">
+        <div>
+            <label for="title">Event Title:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <div>
+            <label for="description">Event Description:</label>
+            <textarea id="description" name="description" required></textarea>
+        </div>
+        <div>
+            <label for="full_price_tickets">Full Price Tickets:</label>
+            <input type="number" id="full_price_tickets" name="full_price_tickets" required>
+        </div>
+        <div>
+            <label for="full_price_cost">Full Price Cost:</label>
+            <input type="number" id="full_price_cost" name="full_price_cost" required>
+        </div>
+        <div>
+            <label for="concession_tickets">Concession Tickets:</label>
+            <input type="number" id="concession_tickets" name="concession_tickets" required>
+        </div>
+        <div>
+            <label for="concession_cost">Concession Cost:</label>
+            <input type="number" id="concession_cost" name="concession_cost" required>
+        </div>
+        <button type="submit">Save Event</button>
+    </form>
+    
+    <a href="/organizer" class="button1">Back to Organizer Home Page</a>
+</body>
+</html>
